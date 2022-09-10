@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 mongoose.connect(
-  `mongodb+srv://nikhil_20:$Ajhar20032001@cluster0.sxabv.mongodb.net/?retryWrites=true&w=majority`
+  `mongodb+srv://nikhil_20:Ajhar20032001@cluster0.sxabv.mongodb.net/?retryWrites=true&w=majority`
 );
 
 app.use(express.urlencoded({ extended: false }));
