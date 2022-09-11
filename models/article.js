@@ -1,9 +1,11 @@
 const mongoose = require(`mongoose`);
 const slugify = require("slugify");
-const marked = require("marked");
+const markDownIt = require("markdown-it");
 const createDomPurify = require("dompurify");
 const { JSDOM } = require("jsdom");
 const dompurify = createDomPurify(new JSDOM().window);
+
+const md = new markDownIt();
 
 const articleSchema = new mongoose.Schema({
   title: {
@@ -39,7 +41,7 @@ articleSchema.pre("validate", function (next) {
       strict: true,
     });
     if (this.markdown) {
-      this.sanitizedHTML = dompurify.sanitize(marked.parse(this.markdown));
+      this.sanitizedHTML = dompurify.sanitize(md.render(this.markdown));
     }
   }
   next();
